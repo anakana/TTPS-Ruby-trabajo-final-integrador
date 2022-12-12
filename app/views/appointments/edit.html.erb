@@ -1,0 +1,6 @@
+<%if Current.user.has_permission("Cliente") %>
+  <h1> Editar turno </h1>
+  <%= render "form", appointment: @appointment %>
+<% else %>
+  <h1> No tienes permisos para ingresar a esta sección </h1>
+<% end %>

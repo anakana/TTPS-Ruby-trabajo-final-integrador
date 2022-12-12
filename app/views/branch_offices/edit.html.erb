@@ -1,0 +1,9 @@
+<% if Current.user.has_permission('Administrador') %>
+
+  <h1> Editar Sucursal </h1>
+<%= render "form", branch_office: @branch_office %>
+
+<h2> Editar Horarios </h2>
+<% else %>
+  <h1> No tienes permisos para ingresar a esta sección </h1>
+<% end %>

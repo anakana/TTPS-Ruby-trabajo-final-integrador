@@ -1,0 +1,21 @@
+<h1> Usuario </h1>
+<p>
+  <strong>Nombre:</strong>
+  <%= @user.name %>
+</p>
+
+<% @user.appointments.each do |appointment| %>
+  <div class="mb-3">
+    <%= link_to appointment.date.strftime("Turno fecha: %m/%d/%Y"), appointment %>
+  </div>
+<% end %>
+
+<%if Current.user.has_permission("Administrador") %>
+  <div class="mb-3">
+    <%= button_to "Editar Usuario ", password_path, method: :get, class: "btn btn-outline-warning" %>
+  </div>
+  <br>
+  <div class="col col-lg-2">
+    <%= button_to "Eliminar Usuario", user_path(@user), method: :delete, class: "btn btn-outline-danger" %>
+  </div>
+<% end %>

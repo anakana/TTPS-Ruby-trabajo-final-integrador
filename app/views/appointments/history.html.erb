@@ -1,0 +1,6 @@
+<h1> Historial de turnos </h1>
+<% @history.each do |appointment| %>
+  <div class="mb-3">
+    <%= link_to appointment.date.strftime("Turno fecha: %m/%d/%Y"), appointment %>
+  </div>
+<% end %>

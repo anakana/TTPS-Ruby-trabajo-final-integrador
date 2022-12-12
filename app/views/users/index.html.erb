@@ -1,0 +1,23 @@
+<% if Current.user && Current.user.has_permission('Administrador') %>
+
+  <h1> Lista Usuarios </h1>
+  <% @users.each do |user| %>
+    <% if not user.id == Current.user.id %>
+      <div class="mb-3">
+        <%= link_to user.name, user %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="mb-3">
+    <%= button_to "Nuevo Usuario Administrador", sign_up_user_administrator_path, method: :get, class: "btn btn-primary" %>
+  </div>
+  <div class="mb-3">
+    <%= button_to "Nuevo Usuario Personal Bancario", sign_up_user_bank_staff_path, method: :get, class: "btn btn-primary" %>
+  </div>
+  <div class="mb-3">
+    <%= button_to "Nuevo Usuario Cliente", sign_up_path, method: :get, class: "btn btn-primary" %>
+  </div>
+<% else %>
+  <h1> No tienes permisos para ingresar a esta sección </h1>
+<% end %>

@@ -1,27 +1,13 @@
 # README
+Instalar todo lo necesario:
+bundle install 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Para crear la db y llenarla:
+rake db:drop:_unsafe db:create db:migrate db:seed 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-rake db:drop:_unsafe db:create db:migrate
-
+Ejecutar:
 rails server
+
+Cosas Faltantes:
+Falto agregar el comentario al atender un turno.
+Falto verificar que el turno cumpla con los horarios de la sucursal.

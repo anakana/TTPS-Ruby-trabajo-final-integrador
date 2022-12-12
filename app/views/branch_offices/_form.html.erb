@@ -1,0 +1,26 @@
+<h1> Registrar Usuario Administrador </h1>
+<%= form_with model: branch_office do |form| %>
+  <%if form.object.errors.any? %>
+    <div class="alert alert-danger">
+      <% form.object.errors.full_messages.each do |message| %>
+        <div> <%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, class: "form-control"%>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Dirección" %>
+    <%= form.text_field :direction, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Teléfono" %>
+    <%= form.text_field :phone, class: "form-control" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.submit class: "btn btn-primary"%>
+  </div>
+<% end %>

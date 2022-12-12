@@ -1,0 +1,64 @@
+<h1> Turno </h1>
+<p>
+  <strong>Motivo:</strong>
+  <%= @appointment.motive %>
+</p>
+
+<p>
+  <strong>Sucursal:</strong>
+  <%= @appointment.branch_office_name %>
+</p>
+
+<p>
+  <strong>Fecha</strong>
+  <%= @appointment.date.strftime("Turno fecha: %m/%d/%Y") %>
+</p>
+
+<p>
+  <strong>Hora:</strong>
+  <%= @appointment.hour.strftime("%I:%M %p") %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @appointment.status %>
+</p>
+
+<% unless @appointment.bank_staff_id.nil? %>
+<p>
+  <strong>Personal Bancario:</strong>
+  <%=  @appointment.bank_staff_name  %>
+</p>
+<% end %>
+
+<% unless @appointment.description_result.nil? %>
+  <p>
+    <strong>Descripcion final:</strong>
+    <%=  @appointment.description_result  %>
+  </p>
+<% end %>
+<br>
+
+<% if  @appointment.status. == 'pendiente'  %>
+  <%if Current.user.has_permission("Cliente") %>
+    <div class="mb-3">
+      <%= button_to "Editar Turno", edit_appointment_path, method: :get, class: "btn btn-outline-warning" %>
+    </div>
+    <br>
+    <div class="col col-lg-2">
+      <%= button_to "Cancelar Turno", cancel_appointment_path(id: @appointment.id), method: :post, class: "btn btn-outline-danger" %>
+    </div>
+    <br>
+
+    <div class="col col-lg-2">
+      <%= button_to "Eliminar Turno", appointment_path(@appointment), method: :delete, class: "btn btn-outline-danger" %>
+    </div>
+  <% end %>
+
+  <%if Current.user.has_permission('Personal Bancario') %>
+    <div class="col col-lg-2">
+      <%= button_to "Atender Turno", attend_appointment_path(id: @appointment.id), method: :post, class: "btn btn-outline-warning" %>
+    </div>
+  <% end %>
+<% end %>
+

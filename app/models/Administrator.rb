@@ -1,2 +1,2 @@
-class Administrator < Rol
+class Administrator < User
 end

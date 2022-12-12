@@ -1,0 +1,38 @@
+<%if Current.user.has_permission("Cliente") %>
+  <%= form_with model: appointment do |form| %>
+    <%if form.object.errors.any? %>
+      <div class="alert alert-danger">
+        <% form.object.errors.full_messages.each do |message| %>
+          <div> <%= message %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label "Seleccione la sucursal:" %>
+      <br>
+      <%= form.collection_select :branch_office_id, BranchOffice.order(:name),:id, :name %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label "Fecha" %>
+      <%= form.date_field :date, class: "form-control" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label "Horario" %>
+      <%= form.time_field :hour, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label "Motivo del Turno" %>
+      <%= form.text_field :motive, class: "form-control"%>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit class: "btn btn-primary"%>
+    </div>
+  <% end %>
+<% else %>
+  <h1> No tienes permisos para ingresar a esta sección </h1>
+<% end %>

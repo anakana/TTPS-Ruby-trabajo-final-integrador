@@ -1,0 +1,6 @@
+<% if Current.user.has_permission('Administrador') %>
+    <h1> Crear Sucursal </h1>
+  <%= render "form", branch_office: @branch_office %>
+<% else %>
+  <h1> No tienes permisos para ingresar a esta sección </h1>
+<% end %>

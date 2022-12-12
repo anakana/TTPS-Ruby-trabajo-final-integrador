@@ -1,0 +1,8 @@
+<h1> Lista Turnos Pendientes </h1>
+<% @appointments.each do |appointment| %>
+    <div class="mb-3">
+      <%= link_to appointment.date.strftime("Turno fecha: %m/%d/%Y"), appointment %>
+    </div>
+<% end %>
+
+<%= button_to "Solicitar nuevo turno", request_appointment_path, method: :get, class: "btn btn-primary" %>

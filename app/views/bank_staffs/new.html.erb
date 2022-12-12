@@ -1,0 +1,38 @@
+<% if Current.user.has_permission('Administrador') %>
+  <h1> Registrar Usuario Personal Bancario </h1>
+  <%= form_with model: @bank_staff, url: sign_up_user_bank_staff_path do |form| %>
+  <%if form.object.errors.any? %>
+    <div class="alert alert-danger">
+      <% form.object.errors.full_messages.each do |message| %>
+        <div> <%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label "Nombre de usuario o correo" %>
+    <%= form.text_field :name, class: "form-control"%>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Contraseña" %>
+    <%= form.password_field :password, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Confirmación de contraseña" %>
+    <%= form.password_field :password_confirmation, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label "Seleccione la sucursal en la que sera asignado" %>
+    <br>
+    <%= form.collection_select :branch_office_id, BranchOffice.order(:name),:id, :name %>
+  </div>
+
+
+  <div class="mb-3">
+    <%= form.submit "Registrar", class: "btn btn-primary"%>
+  </div>
+
+<% end %>
+<% else %>
+  <h1> No tienes permisos para ingresar a esta sección </h1>
+<% end %>

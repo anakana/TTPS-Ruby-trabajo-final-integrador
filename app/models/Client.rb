@@ -1,4 +1,4 @@
-class Client < Rol
+class Client < User
   has_many :appointments
-  has_many :BankStaffs, through: :appointments
+  has_many :bankStaffs, through: :appointments
 end

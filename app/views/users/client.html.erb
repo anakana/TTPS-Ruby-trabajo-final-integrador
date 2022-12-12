@@ -1,0 +1,10 @@
+<% if Current.user && Current.user.has_permission('Personal Bancario') %>
+  <h1> Usuarios </h1>
+  <% @users_client.each do |user| %>
+  <div class="mb-3">
+    <%= link_to user.name, user %>
+  </div>
+<% end %>
+<% else %>
+  <h1> No tienes permisos para ingresar a esta sección </h1>
+<% end %>

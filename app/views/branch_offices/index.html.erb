@@ -1,0 +1,13 @@
+<% if Current.user.has_permission('Administrador') %>
+
+  <h1> Lista Sucursales </h1>
+  <% @branch_offices.each do |branch_office| %>
+    <div class="mb-3">
+      <%= link_to branch_office.name, branch_office %>
+    </div>
+  <% end %>
+
+  <%= button_to "Nueva Sucursal", new_branch_office_path, method: :get, class: "btn btn-primary" %>
+<% else %>
+  <h1> No tienes permisos para ingresar a esta sección </h1>
+<% end %>

@@ -1,0 +1,17 @@
+  <h1> Iniciar Sesión </h1>
+
+  <%= form_with url: sign_in_path do |form| %>
+    <div class="mb-3">
+      <%= form.label "Usuario/Correo" %>
+      <%= form.text_field :name, class: "form-control"%>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label "Contraseña" %>
+      <%= form.password_field :password, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit "Iniciar Sesión", class: "btn btn-primary"%>
+    </div>
+  <% end %>
