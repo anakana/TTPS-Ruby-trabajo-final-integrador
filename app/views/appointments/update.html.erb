@@ -1,0 +1,11 @@
+<%if Current.user.has_permission("Cliente") %>
+  <h1> Solicitar turno </h1>
+  <%= form_with(url: edit_appointment_path(id: @appointment.id), method: :get) do |f| %>
+
+    <%= f.label "Seleccione la sucursal:" %>
+    <%= f.collection_select :branch_office_id, BranchOffice.order(:name),:id, :name%>
+    <%= f.submit "Seleccionar" %>
+  <% end %>
+<% else %>
+  <h1> No tienes permisos para ingresar a esta sección </h1>
+<% end %>

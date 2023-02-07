@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "sign_up_user", to: "users#new"
   post "sign_up_user/:rol", to: "users#create"
   get "update_user", to: "users#edit"
-  patch "update_user", to: "users#update"
+  patch "sign_up", to: "users#update"
 
   get "sign_up_user_administrator", to: "administrators#new"
   post "sign_up_user_administrator", to: "administrators#create"
@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   get "appointments_history", to: "appointments#history"
   post "cancel_appointment", to: "appointments#cancel"
   post "attend_appointment", to: "appointments#attend"
+  post "appointment_schedule", to: "appointments#schedule"
+  put "appointment_update", to:"appointments#update"
+  post "appointment_update", to:"appointments#update"
 
 
   get "sign_up", to: "registrations#new"

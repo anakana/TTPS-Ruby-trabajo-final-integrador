@@ -10,6 +10,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @appointments = Appointment.all
+    @appointments = @appointments.filter_by_id_user(@user.id)
+    @history = []
+    @appointments.each do |appointment|
+      puts appointment.status
+      puts appointment.cancelado?
+      puts :cancelado
+      if appointment.cancelado? == false
+        @history << appointment
+      end
+    end
   end
 
   def edit
@@ -17,7 +28,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    if params[:id]!=nil
+      @user = User.find(params[:id])
+    end
+    if  params[:user][:id]!=nil
+      @user = User.find(params[:user][:id])
+    end
     if @user.update(user_params)
       redirect_to @user
     else

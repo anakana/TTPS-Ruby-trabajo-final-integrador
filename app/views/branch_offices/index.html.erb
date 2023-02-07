@@ -1,4 +1,4 @@
-<% if Current.user.has_permission('Administrador') %>
+<% if Current.user.has_permission('Administrador') || Current.user.has_permission('Personal Bancario')%>
 
   <h1> Lista Sucursales </h1>
   <% @branch_offices.each do |branch_office| %>
@@ -7,7 +7,9 @@
     </div>
   <% end %>
 
-  <%= button_to "Nueva Sucursal", new_branch_office_path, method: :get, class: "btn btn-primary" %>
+  <% if Current.user.has_permission('Administrador')%>
+    <%= button_to "Nueva Sucursal", new_branch_office_path, method: :get, class: "btn btn-primary" %>
+  <% end %>
 <% else %>
   <h1> No tienes permisos para ingresar a esta sección </h1>
 <% end %>

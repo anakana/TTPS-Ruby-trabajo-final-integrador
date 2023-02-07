@@ -1,4 +1,13 @@
-<h1> Editar Contraseña </h1>
+</br>
+</br>
+<h2>
+<p>
+  <strong>Nombre:</strong>
+  <%= Current.user.name %>
+</p>
+</h2>
+
+<h2> Editar Contraseña </h2>
 <%= form_with model: Current.user, url: password_path do |form| %>
   <%if form.object.errors.any? %>
     <div class="alert alert-danger">
@@ -7,6 +16,7 @@
         <% end %>
     </div>
     <% end %>
+
 
   <div class="mb-3">
     <%= form.label "Nueva Contraseña"%>
@@ -24,8 +34,6 @@
       <%= form.label "Nuevo usuario o mail"%>
       <%= form.text_field :name, class: "form-control" %>
     </div>
-  <% else %>
-    <h1> No tienes permisos para ingresar a esta sección </h1>
   <% end %>
 
   <div class="mb-3">

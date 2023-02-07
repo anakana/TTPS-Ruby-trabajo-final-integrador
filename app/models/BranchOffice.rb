@@ -9,4 +9,8 @@ class BranchOffice < ApplicationRecord
   has_many :bank_staffs
   has_many :appointments
 
+  def find_schedules(id_branch_office)
+    BranchOffice.find_by(id: id_branch_office)
+  end
+
 end

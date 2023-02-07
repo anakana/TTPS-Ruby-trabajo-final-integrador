@@ -11,12 +11,7 @@
 
 <p>
   <strong>Fecha</strong>
-  <%= @appointment.date.strftime("Turno fecha: %m/%d/%Y") %>
-</p>
-
-<p>
-  <strong>Hora:</strong>
-  <%= @appointment.hour.strftime("%I:%M %p") %>
+  <%= @appointment.date.strftime("%m/%d/%Y %I:%M %p") %>
 </p>
 
 <p>
@@ -55,10 +50,13 @@
     </div>
   <% end %>
 
-  <%if Current.user.has_permission('Personal Bancario') %>
+  <%if Current.user.has_permission('Personal Bancario') && Current.user.same_branch_office_id(@appointment.branch_office_id)%>
     <div class="col col-lg-2">
-      <%= button_to "Atender Turno", attend_appointment_path(id: @appointment.id), method: :post, class: "btn btn-outline-warning" %>
-    </div>
+      <%= form_for(:appointment, :url =>  attend_appointment_path(id: @appointment.id)) do |f| %>
+        <%= f.text_area :description_result %>
+        <%= button_to "Atender Turno", class: "btn btn-outline-warning" %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 

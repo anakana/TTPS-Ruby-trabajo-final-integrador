@@ -1,77 +1,82 @@
-<% if Current.user && Current.user.has_permission('Administrador') %>
-<h1> Información de la Sucursal </h1>
-<p>
-  <strong>Sucursal:</strong>
-  <%= @branch_office.name %>
-</p>
-<p>
-  <strong>Dirección</strong>
-  <%= @branch_office.direction %>
-</p>
-<p>
-  <strong>Teléfono:</strong>
-  <%= @branch_office.phone %>
-</p>
-<div class="col col-lg-2">
-  <%= button_to "Editar Sucursal", edit_branch_office_path(@branch_office), method: :get, class: "btn btn-outline-warning" %>
-</div>
-<br>
-
-<% if @branch_office.schedules.first %>
-  <h3>Horarios</h3>
-<% end %>
-
-<% @branch_office.schedules.each do |schedule| %>
+<% if Current.user && Current.user.has_permission('Administrador') || Current.user.has_permission('Personal Bancario') %>
+  <h1> Información de la Sucursal </h1>
   <p>
-    <strong>Día:</strong>
-    <%= schedule.day %>
+    <strong>Sucursal:</strong>
+    <%= @branch_office.name %>
+  </p>
+  <p>
+    <strong>Dirección</strong>
+    <%= @branch_office.direction %>
+  </p>
+  <p>
+    <strong>Teléfono:</strong>
+    <%= @branch_office.phone %>
   </p>
 
-  <p>
-    <strong>Horario Inicio:</strong>
-    <%= schedule.start_time.strftime("%I:%M %p") %>
-  </p>
-
-  <p>
-    <strong>Horario Fin:</strong>
-    <%= schedule.end_time.strftime("%I:%M %p") %>
-  </p>
-  <div class="mb-3">
-    <%= button_to "Editar Horario", edit_branch_office_schedule_path(schedule.id), method: :get, class: "btn btn-outline-warning" %>
-  </div>
-  <br>
-<% end %>
-
-<div class="col col-lg-2">
-  <%= button_to "Eliminar Sucursal", branch_office_path(@branch_office), method: :delete, class: "btn btn-outline-danger" %>
-</div>
-<br>
-
-<h3>Agregar horario de atención:</h3>
-<%= form_with model: [ @branch_office, @branch_office.schedules.build ] do |fields| %>
-  <%if fields.object.errors.any? %>
-    <div class="alert alert-danger">
-      <% fields.object.errors.full_messages.each do |message| %>
-        <div> <%= message %></div>
-      <% end %>
-    </div>
+  <% if Current.user.has_permission('Administrador')%>
+      <div class="col col-lg-2">
+        <%= button_to "Editar Sucursal", edit_branch_office_path(@branch_office), method: :get, class: "btn btn-outline-warning" %>
+      </div>
   <% end %>
-  <div class="mb-3">
-    <%= fields.label "Día" %>
-    <%= fields.select :day, [['Lunes','Lunes'],['Martes','Martes'],['Miercoles','Miercoles'],['Jueves','Jueves'],['Viernes','Viernes']] %>
-  </div>
-  <div class="mb-4">
-    <%= fields.label "Horario Inicio" %>
-    <%= fields.time_field :start_time, class: "form-control" %>
-  </div>
-  <div class="mb-4">
-    <%= fields.label "Horario Fin" %>
-    <%= fields.time_field :end_time, class: "form-control" %>
-  </div>
-  <p>
-    <%= fields.submit "Crear Horario", class: "btn btn-primary" %>
-  </p>
-<% end %>
-<% else %>
-  <h1> No tienes permisos para ingresar a esta sección </h1>
+  <br>
+
+  <% if @branch_office.schedules.first %>
+    <h3>Horarios</h3>
+  <% end %>
+
+  <% @branch_office.schedules.each do |schedule| %>
+    <p>
+      <strong>Día:</strong>
+      <%= schedule.day %>
+    </p>
+
+    <p>
+      <strong>Horario Inicio:</strong>
+      <%= schedule.start_time.strftime("%I:%M %p") %>
+    </p>
+
+    <p>
+      <strong>Horario Fin:</strong>
+      <%= schedule.end_time.strftime("%I:%M %p") %>
+    </p>
+    <% if Current.user.has_permission('Administrador')%>
+        <div class="mb-3">
+          <%= button_to "Editar Horario", edit_branch_office_schedule_path(schedule.id), method: :get, class: "btn btn-outline-warning" %>
+        </div>
+      <% end %>
+      <br>
+  <% end %>
+
+  <% if Current.user.has_permission('Administrador')%>
+      <div class="col col-lg-2">
+        <%= button_to "Eliminar Sucursal", branch_office_path(@branch_office), method: :delete, class: "btn btn-outline-danger" %>
+      </div>
+      <br>
+
+    <h3>Agregar horario de atención:</h3>
+    <%= form_with model: [ @branch_office, @branch_office.schedules.build ] do |fields| %>
+      <%if fields.object.errors.any? %>
+        <div class="alert alert-danger">
+          <% fields.object.errors.full_messages.each do |message| %>
+            <div> <%= message %></div>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="mb-3">
+        <%= fields.label "Día" %>
+        <%= fields.select :day, [['Lunes','Monday'],['Martes','Tuesday'],['Miercoles','Wednesday'],['Jueves','Thursday'],['Viernes','Friday']] %>
+      </div>
+      <div class="mb-4">
+        <%= fields.label "Horario Inicio" %>
+        <%= fields.time_field :start_time, class: "form-control" %>
+      </div>
+      <div class="mb-4">
+        <%= fields.label "Horario Fin" %>
+        <%= fields.time_field :end_time, class: "form-control" %>
+      </div>
+      <p>
+        <%= fields.submit "Crear Horario", class: "btn btn-primary" %>
+      </p>
+    <% end %>
+  <% end %>
 <% end %>

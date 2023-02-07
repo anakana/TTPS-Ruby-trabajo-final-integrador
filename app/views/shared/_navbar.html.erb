@@ -11,36 +11,33 @@
         </li>
 
         <% if Current.user %>
-          <% if Current.user.has_permission('Administrador') %>
-          <li class="nav-item">
-            <%= link_to "Sucursales", branch_offices_path, class: "nav-link" %>
-          </li>
-        <% end %>
-        <% end %>
-
-        <% if Current.user%>
-        <% if Current.user.has_permission('Administrador') %>
-          <li class="nav-item">
-            <%= link_to "Usuarios", users_path, class: "nav-link" %>
-          </li>
-        <% end %>
-          <% if Current.user.has_permission('Personal Bancario') %>
+          <% if Current.user.has_permission('Administrador') || Current.user.has_permission('Personal Bancario')%>
             <li class="nav-item">
-              <%= link_to "Usuarios", users_client_path, class: "nav-link" %>
+              <%= link_to "Sucursales", branch_offices_path, class: "nav-link" %>
             </li>
           <% end %>
-
-      <% end %>
-
+        <% end %>
 
         <% if Current.user%>
-          <% if  Current.user.has_permission('Cliente') %>
-          <li class="nav-item">
-            <%= link_to "Gestion de Turnos", appointment_management_path, class: "nav-link" %>
-          </li>
-        <% end %>
-        <% end %>
+          <% if Current.user.has_permission('Administrador') %>
+            <li class="nav-item">
+              <%= link_to "Usuarios", users_path, class: "nav-link" %>
+            </li>
+          <% end %>
+          <% if Current.user.has_permission('Personal Bancario') %>
+            <li class="nav-item">
+              <%= link_to "Clientes", users_client_path, class: "nav-link" %>
+            </li>
+          <% end %>
+      <% end %>
 
+        <% if Current.user%>
+          <% if  Current.user.has_permission('Cliente') || Current.user.has_permission('Personal Bancario') %>
+            <li class="nav-item">
+              <%= link_to "Gestion de Turnos", appointment_management_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        <% end %>
 
       </ul>
 

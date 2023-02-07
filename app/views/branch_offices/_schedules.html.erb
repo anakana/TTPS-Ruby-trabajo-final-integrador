@@ -1,0 +1,22 @@
+<%= branch_offices do |branch_office|  %>
+  <p>
+    <strong>Sucursal:</strong>
+    <%= branch_office.name %>
+  </p>
+
+  <% if branch_office.schedules.first %>
+    <h3>Horarios</h3>
+  <% end %>
+
+  <% branch_office.schedules.each do |schedule| %>
+    <p>
+      <strong>Día:</strong>
+      <%= schedule.day %>
+      <strong>Horario Inicio:</strong>
+      <%= schedule.start_time.strftime("%I:%M %p") %>
+      <strong>Horario Fin:</strong>
+      <%= schedule.end_time.strftime("%I:%M %p") %>
+    </p>
+  <% end %>
+<% end %>
+

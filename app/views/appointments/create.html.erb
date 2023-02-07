@@ -1,0 +1,35 @@
+<% if @branch_office != nil %>
+  <h2> Horarios <%= @branch_office.name %> </h2>
+  <% @branch_office.schedules.each do |schedule| %>
+    <p>
+      <strong><%= schedule.day %></strong>
+      <%= schedule.start_time.strftime("%I:%M %p") %>
+      <%= schedule.end_time.strftime("%I:%M %p") %>
+    </p>
+  <% end%>
+
+  <%= form_for(:appointment, :url =>  request_appointment_path(@appointment)) do |form| %>
+
+    <div class="mb-4">
+      <%= form.label "Fecha" %>
+      <%= form.datetime_field :date, class: "form-control" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.hidden_field :branch_office_id, value: @branch_office.id, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label "Motivo del Turno" %>
+      <%= form.text_field :motive, class: "form-control"%>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit "Crear turno", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <div class="col col-lg-2">
+    <%= button_to "Seleccionar otra sucursal", request_appointment_path, method: :get, class: "btn btn-primary" %>
+  </div>
+<% end %>

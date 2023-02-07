@@ -20,15 +20,15 @@ user_client = User.create({name:"client",password:"client", password_confirmatio
 
 
 
-horario_1 = Schedule.create({day:"Lunes",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 16:00:00",branch_office_id: sucursal_1.id})
-horario_2 = Schedule.create({day:"Lunes",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 16:00:00",branch_office_id: sucursal_2.id})
-horario_3 = Schedule.create({day:"Lunes",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 16:00:00",branch_office_id: sucursal_3.id})
-horario_4 = Schedule.create({day:"Lunes",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 16:00:00",branch_office_id: sucursal_4.id})
-horario_5 = Schedule.create({day:"Martes",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 17:00:00",branch_office_id: sucursal_1.id})
-horario_6 = Schedule.create({day:"Martes",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 17:00:00",branch_office_id: sucursal_2.id})
-horario_7 = Schedule.create({day:"Martes",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 17:00:00",branch_office_id: sucursal_3.id})
-horario_8 = Schedule.create({day:"Martes",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 17:00:00",branch_office_id: sucursal_4.id})
-horario_9 = Schedule.create({day:"Miercoles",start_time:"2000-01-01 10:00:00",end_time:"2000-01-01 16:00:00",branch_office_id: sucursal_1.id})
+horario_1 = Schedule.create({day:"Monday",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 16:00:00",branch_office_id: sucursal_1.id})
+horario_2 = Schedule.create({day:"Monday",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 16:00:00",branch_office_id: sucursal_2.id})
+horario_3 = Schedule.create({day:"Monday",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 16:00:00",branch_office_id: sucursal_3.id})
+horario_4 = Schedule.create({day:"Monday",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 16:00:00",branch_office_id: sucursal_4.id})
+horario_5 = Schedule.create({day:"Tuesday",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 17:00:00",branch_office_id: sucursal_1.id})
+horario_6 = Schedule.create({day:"Tuesday",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 17:00:00",branch_office_id: sucursal_2.id})
+horario_7 = Schedule.create({day:"Tuesday",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 17:00:00",branch_office_id: sucursal_3.id})
+horario_8 = Schedule.create({day:"Tuesday",start_time:"2000-01-01 09:00:00",end_time:"2000-01-01 17:00:00",branch_office_id: sucursal_4.id})
+horario_9 = Schedule.create({day:"Wednesday",start_time:"2000-01-01 10:00:00",end_time:"2000-01-01 16:00:00",branch_office_id: sucursal_1.id})
 
 turno_1 = Appointment.create!({motive:"motivo 1",date: "2022-12-07 00:00:00",hour:"2000-01-01 10:00:00",branch_office_id: sucursal_1.id, bank_staff_id: user_staff.id,user_id: user_client.id})
 turno_2 = Appointment.create!({motive:"motivo 2",date: "2022-12-08 00:00:00",hour:"2000-01-01 10:00:00",branch_office_id: sucursal_1.id, bank_staff_id: user_staff.id,user_id: user_client.id})
