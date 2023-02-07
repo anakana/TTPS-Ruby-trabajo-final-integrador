@@ -31,9 +31,6 @@ class AppointmentsController < ApplicationController
     @appointments = @appointments.filter_by_id_user(Current.user.id)
     @history = []
     @appointments.each do |appointment|
-      puts appointment.status
-      puts appointment.cancelado?
-      puts :cancelado
       if appointment.cancelado? == false
         @history << appointment
       end
@@ -51,7 +48,6 @@ class AppointmentsController < ApplicationController
     @commit = params[:commit]
 
     if @commit == "Crear turno"
-      puts params[:commit]
       @client = User.find_by(id: Current.user.id)
       @branch_office_id = params[:appointment][:branch_office_id]
       @branch_office = BranchOffice.find_by(id: @branch_office_id)
@@ -120,9 +116,6 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
     @user = User.find_by(id: Current.user.id)
     @description = params[:appointment][:description_result]
-    puts @appointment.branch_office_id
-    puts  @user.branch_office_id
-    puts  @description
 
     if @appointment.branch_office_id == @user.branch_office_id && @description != ""
       if @appointment.update(status: :atendido,bank_staff_id: Current.user.id,description_result: @description)

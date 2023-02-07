@@ -36,6 +36,5 @@ class Appointment < ApplicationRecord
     unless @flag
       self.errors.add(:date,"El día y horario elegido no coincide con el horario de la sucursal")
     end
-    puts @flag
   end
 end

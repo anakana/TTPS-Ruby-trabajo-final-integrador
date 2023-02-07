@@ -13,8 +13,6 @@ class User < ApplicationRecord
   end
 
   def same_branch_office_id(appointment_branch_office_id)
-    puts "VALIDAR IGUAL BRANCH ID"
-    puts branch_office_id == appointment_branch_office_id
     branch_office_id == appointment_branch_office_id
   end
 

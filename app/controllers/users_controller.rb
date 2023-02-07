@@ -14,9 +14,6 @@ class UsersController < ApplicationController
     @appointments = @appointments.filter_by_id_user(@user.id)
     @history = []
     @appointments.each do |appointment|
-      puts appointment.status
-      puts appointment.cancelado?
-      puts :cancelado
       if appointment.cancelado? == false
         @history << appointment
       end
